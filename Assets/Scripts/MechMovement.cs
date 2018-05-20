@@ -19,7 +19,6 @@ public class MechMovement : MonoBehaviour
 
         if (moveVerticalAxis > 0)
         {
-			// FindObjectOfType<AudioManager>().play("MechWalk");
             anim.SetBool("isWalkingFront", true);
 			anim.SetBool("isTurningRight", false);
             anim.SetBool("isWalkingBack", false);

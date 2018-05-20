@@ -27,10 +27,14 @@ public class BasicGun : MonoBehaviour {
 
     ParticleSystem particle;
 
+    Animator MechPrincipalAnimController;
+    
 
     void Start()
     {
         particle = muzzleParticle.GetComponent<ParticleSystem>();
+
+        MechPrincipalAnimController = GetComponent<Animator>();
     }
 
 
@@ -44,7 +48,12 @@ public class BasicGun : MonoBehaviour {
             {
                 timer = 0f;
                 fire();
+                MechPrincipalAnimController.SetBool("isShooting", true);
                 FindObjectOfType<AudioManager>().play("BasicGun");
+            }
+            else
+            {
+                MechPrincipalAnimController.SetBool("isShooting", false);
             }
         }
 	}
@@ -62,7 +71,9 @@ public class BasicGun : MonoBehaviour {
 			// we enter here if we hit something
 			// let's display the name of the object hited
 			Debug.Log(hit.transform.name);
+
 			Enemy target = hit.transform.GetComponent<Enemy> ();
+
 			// make sure we hit and object with a target
 			if (target != null) {
 				target.Takedamage (damage);
@@ -72,6 +83,7 @@ public class BasicGun : MonoBehaviour {
             if (hit.rigidbody != null)
             {
                 hit.rigidbody.AddForce(-hit.normal * impactForce);
+                FindObjectOfType<AudioManager>().play("GunImpactOnEnemy");
             }
 
             // dust from hit point

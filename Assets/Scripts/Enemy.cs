@@ -31,12 +31,21 @@ public class Enemy : MonoBehaviour
 
     ParticleSystem particle;
 
+    public GameObject enemyLeftHand;
+
+    Animator shootAnim;
+
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
         anim = GetComponent<Animator>();
+
         particle = muzzleParticle.GetComponent<ParticleSystem>();
+
         timeBtwShots = startTimeBtwShots;
+
+        shootAnim = enemyLeftHand.GetComponent<Animator>();
     }
 
     void Update()
@@ -52,16 +61,18 @@ public class Enemy : MonoBehaviour
             anim.SetBool("isIdle", false);
             if (direction.magnitude > minDistance)
             {
-                this.transform.Translate(0, 0, 0.1f);
+                this.transform.Translate(0, 0, 0.05f);
                 anim.SetBool("isWalkingFront", true);
                 anim.SetBool("isShooting", true);
                 Shoot();
+                shootAnim.SetBool("isShootingAnim", true);
             }
             else
             {
                 anim.SetBool("isWalkingFront", false);
                 anim.SetBool("isShooting", true);
                 Shoot();
+                shootAnim.SetBool("isShootingAnim", true);
             }
         }
         else
@@ -69,11 +80,9 @@ public class Enemy : MonoBehaviour
             anim.SetBool("isIdle", true);
             anim.SetBool("isWalkingFront", false);
             anim.SetBool("isShooting", false);
+            shootAnim.SetBool("isShootingAnim", false);
         }
-
-
         
-
     }
 
     public void Takedamage(float amountOfDamage)
@@ -81,12 +90,15 @@ public class Enemy : MonoBehaviour
         health -= amountOfDamage;
         if (health <= 0f)
         {
-            Die();
+            StartCoroutine(EnemyDie());
         }
     }
 
-    void Die()
+
+    IEnumerator EnemyDie()
     {
+        anim.SetBool("isDying", true);
+        yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
     }
 

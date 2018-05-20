@@ -855,6 +855,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4714164633367996}
+  - component: {fileID: 95293752967565018}
   m_Layer: 0
   m_Name: Weapon_Flak_2x_Lvl5
   m_TagString: Untagged
@@ -1664,8 +1665,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.00000049908886, y: 0.012373158, z: -0.5957943}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4535457438176822}
+  m_Children: []
   m_Father: {fileID: 4516893285478348}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1895,7 +1895,7 @@ Transform:
   - {fileID: 4087914766336850}
   - {fileID: 4002840075350034}
   m_Father: {fileID: 4714164633367996}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4319058742859444
 Transform:
@@ -2160,14 +2160,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1687712614332756}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.126, y: 0, z: 0.767}
+  m_LocalRotation: {x: -5.4589102e-12, y: 0.100290634, z: -1.4139977e-10, w: 0.9949583}
+  m_LocalPosition: {x: -0.46345615, y: 0.39319515, z: 2.1725142}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4801455686861968}
-  m_Father: {fileID: 4144965381726402}
+  m_Father: {fileID: 4714164633367996}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 11.512, z: 0}
 --- !u!4 &4543075007174112
 Transform:
   m_ObjectHideFlags: 1
@@ -2400,6 +2400,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4535457438176822}
   - {fileID: 4306231304562402}
   m_Father: {fileID: 4374826570300112}
   m_RootOrder: 0
@@ -2518,7 +2519,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1493138679463784}
   m_LocalRotation: {x: 0, y: 0.7071067, z: 0, w: -0.7071069}
-  m_LocalPosition: {x: -0.021, y: 0, z: 0.127}
+  m_LocalPosition: {x: -0.005, y: 0, z: 0.128}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4891814022438200}
@@ -3691,7 +3692,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!64 &64241667220789446
 MeshCollider:
@@ -3721,6 +3722,24 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 8018108739b459f42bce569a159241a9, type: 3}
+--- !u!95 &95293752967565018
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1633741424334042}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: df61f97e050e0d14195bd3a7fd545dcd, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6dd2acb33dcb86545a74502685477dcf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!95 &95499567839635996
 Animator:
   serializedVersion: 3
@@ -3750,7 +3769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea17314de31c114eb924dca6a43cdb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 100000
   speed: 20
   distance: 100
   retreatDistance: 70
@@ -3759,6 +3778,8 @@ MonoBehaviour:
     type: 2}
   muzzleParticle: {fileID: 1493138679463784}
   bulletStartPosition: {fileID: 4535457438176822}
+  minDistance: 60
+  enemyLeftHand: {fileID: 1633741424334042}
 --- !u!137 &137558714285425452
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

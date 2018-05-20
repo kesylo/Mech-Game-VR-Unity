@@ -16,8 +16,6 @@ public class EnemyBullet : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         target = new Vector3(player.position.x, player.position.y + 15, player.position.z);
-
-        Debug.Log(target);
     }
 
 	void Update ()
