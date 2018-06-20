@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MechMovement : MonoBehaviour
 {
-  
+    float sensivity= 0.5f;
     Animator anim;
     
     void Start()
@@ -14,10 +14,11 @@ public class MechMovement : MonoBehaviour
 
     void Update()
     {
+        float rotHorizontalAxis = Input.GetAxisRaw("RotHorizontal");
         float moveVerticalAxis = Input.GetAxis("Vertical");
         float moveHorizontalAxis = Input.GetAxis("Horizontal");
 
-        if (moveVerticalAxis > 0)
+        if (moveVerticalAxis > sensivity)
         {
             anim.SetBool("isWalkingFront", true);
 			anim.SetBool("isTurningRight", false);
@@ -26,7 +27,7 @@ public class MechMovement : MonoBehaviour
             anim.SetBool("isIdle", false);
             //Debug.Log("vertical pos");
         }
-        else if (moveVerticalAxis < 0)
+        else if (moveVerticalAxis < -sensivity)
         {
 			anim.SetBool("isWalkingBack", true);
 			anim.SetBool("isWalkingFront", false);
@@ -47,26 +48,39 @@ public class MechMovement : MonoBehaviour
 
 		/*--------------------------------------------------------------------*/
 
-		if (moveHorizontalAxis > 0)
+		if (moveHorizontalAxis > sensivity)
 		{
-			anim.SetBool("isTurningRight", true);
-			anim.SetBool("isWalkingFront", false);
-			anim.SetBool("isTurningLeft", false);
-			anim.SetBool("isWalkingBack", false);
-			anim.SetBool("isIdle", false);
+			
 			//Debug.Log("vertical pos");
 		}
-		else if (moveHorizontalAxis < 0)
+		else if (moveHorizontalAxis < -sensivity)
 		{
-			anim.SetBool("isTurningLeft", true);
-			anim.SetBool("isWalkingFront", false);
-			anim.SetBool("isWalkingBack", false);
-			anim.SetBool("isTurningRight", false);
-			anim.SetBool("isIdle", false);
+			
 			// Debug.Log("vertical neg");
 		}
 
-        
+        /*--------------------------------------------------------------------*/
+
+        if (rotHorizontalAxis > sensivity)
+        {
+            //Debug.Log(" rot gauche");
+            anim.SetBool("isTurningLeft", true);
+            anim.SetBool("isWalkingFront", false);
+            anim.SetBool("isWalkingBack", false);
+            anim.SetBool("isTurningRight", false);
+            anim.SetBool("isIdle", false);
+        }
+        else if (rotHorizontalAxis < -sensivity)
+        {
+            anim.SetBool("isTurningRight", true);
+            anim.SetBool("isWalkingFront", false);
+            anim.SetBool("isTurningLeft", false);
+            anim.SetBool("isWalkingBack", false);
+            anim.SetBool("isIdle", false);
+            //Debug.Log("rot droite");
+        }
+
+
     }
 
 

@@ -58,7 +58,7 @@ public class BasicGun : MonoBehaviour {
                 fire();
                 MechPrincipalAnimController.SetBool("isShooting", true);
                 FindObjectOfType<AudioManager>().play("BasicGun");
-                CameraShaker.Instance.ShakeOnce(1.5f, 1.5f, 0.1f, 1);
+                CameraShaker.Instance.ShakeOnce(1.5f, 2f, 0.2f, 1);
             }
             else
             {
@@ -79,7 +79,7 @@ public class BasicGun : MonoBehaviour {
 		{
 			// we enter here if we hit something
 			// let's display the name of the object hited
-			Debug.Log(hit.transform.name);
+			//Debug.Log(hit.transform.name);
 
 			Enemy target = hit.transform.GetComponent<Enemy> ();
 

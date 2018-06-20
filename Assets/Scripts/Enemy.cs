@@ -117,9 +117,10 @@ public class Enemy : MonoBehaviour
         if (timeBtwShots <= 0)
         {
             particle.Play();
-            Instantiate(EnemybulletObject, bulletStartPosition.transform.position, Quaternion.identity);  // Quaternion.identity = no rotation
+            GameObject bullet = Instantiate(EnemybulletObject, bulletStartPosition.transform.position, Quaternion.identity);  // Quaternion.identity = no rotation
             timeBtwShots = startTimeBtwShots;
             FindObjectOfType<AudioManager>().play("BasicGun");
+            Destroy(bullet, 4f);
         }
         else
         {

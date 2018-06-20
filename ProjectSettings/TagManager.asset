@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor
   - collider
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

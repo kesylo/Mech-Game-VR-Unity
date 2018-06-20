@@ -6,6 +6,15 @@ using UnityEngine;
 public class OrbitRotation : MonoBehaviour {
     public Transform orbitCenter;
     public float speed = 10f;
+    Vector3 startPosition;
+    Quaternion startrotation;
+
+    private void Awake()
+    {
+        startPosition = transform.position;
+        startrotation = transform.rotation;
+        //print(startPosition);
+    }
 
     void Update()
     {
@@ -27,6 +36,13 @@ public class OrbitRotation : MonoBehaviour {
         if (moveHorizontalAxis < 0 || Input.GetKey(KeyCode.L))
         {
             transform.RotateAround(orbitCenter.transform.position, Vector3.down, speed * Time.deltaTime);
+        }
+
+        if (Input.GetButton("ResetCrosshair"))
+        {
+            //Debug.Log("pressed");
+            transform.position = startPosition;
+            transform.rotation = startrotation;
         }
 
 

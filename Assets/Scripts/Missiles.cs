@@ -14,7 +14,7 @@ public class Missiles : MonoBehaviour
 
     private float timer;
 
-    public float range = 100f;
+    public float range = 1000f;
 
     public GameObject impactEffect;
 
@@ -34,7 +34,7 @@ public class Missiles : MonoBehaviour
 
     public float explosionForce = 10f;
 
-
+  
 
 
     void Start()
@@ -60,7 +60,6 @@ public class Missiles : MonoBehaviour
     }
 
 
-
     private void Explode()
     {
         FindObjectOfType<AudioManager>().play("MissileShoot");
@@ -83,7 +82,7 @@ public class Missiles : MonoBehaviour
 
             GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             FindObjectOfType<AudioManager>().play("MissileHit");
-            CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1);
+            CameraShaker.Instance.ShakeOnce(6f, 6f, 0.2f, 1.5f);
 
             // get nearbear objects
             ExplosionForce();
