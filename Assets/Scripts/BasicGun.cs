@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class BasicGun : MonoBehaviour {
 
@@ -28,6 +29,11 @@ public class BasicGun : MonoBehaviour {
     ParticleSystem particle;
 
     Animator MechPrincipalAnimController;
+
+    public int maxAmmo = 10;
+    int currentAmmo;
+    public float reloadTime = 1f;
+
     
 
     void Start()
@@ -35,6 +41,8 @@ public class BasicGun : MonoBehaviour {
         particle = muzzleParticle.GetComponent<ParticleSystem>();
 
         MechPrincipalAnimController = GetComponent<Animator>();
+
+        currentAmmo = maxAmmo;
     }
 
 
@@ -50,6 +58,7 @@ public class BasicGun : MonoBehaviour {
                 fire();
                 MechPrincipalAnimController.SetBool("isShooting", true);
                 FindObjectOfType<AudioManager>().play("BasicGun");
+                CameraShaker.Instance.ShakeOnce(1.5f, 1.5f, 0.1f, 1);
             }
             else
             {

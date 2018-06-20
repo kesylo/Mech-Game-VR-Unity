@@ -32,7 +32,7 @@ public class Missiles : MonoBehaviour
 
     public float radius = 5f;
 
-    public float explosionForce = 700f;
+    public float explosionForce = 10f;
 
 
 
@@ -50,12 +50,13 @@ public class Missiles : MonoBehaviour
 
         if (timer >= fireRate)
         {
-            if (Input.GetKey(KeyCode.B))
+            if (Input.GetButton("FireMissile"))
             {
                 timer = 0f;
                 Explode();
             }
-        }
+
+         }
     }
 
 

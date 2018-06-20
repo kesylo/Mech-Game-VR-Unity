@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Unity Stuff")]
+    public Image healtBar;
 
-    public float health = 50f;
+
+    public float starthealth = 100f;
+    float health;
 
     Transform target;
 
@@ -46,6 +51,8 @@ public class Enemy : MonoBehaviour
         timeBtwShots = startTimeBtwShots;
 
         shootAnim = enemyLeftHand.GetComponent<Animator>();
+
+        health = starthealth;
     }
 
     void Update()
@@ -88,6 +95,9 @@ public class Enemy : MonoBehaviour
     public void Takedamage(float amountOfDamage)
     {
         health -= amountOfDamage;
+
+        healtBar.fillAmount = health / starthealth;
+
         if (health <= 0f)
         {
             StartCoroutine(EnemyDie());
@@ -109,6 +119,7 @@ public class Enemy : MonoBehaviour
             particle.Play();
             Instantiate(EnemybulletObject, bulletStartPosition.transform.position, Quaternion.identity);  // Quaternion.identity = no rotation
             timeBtwShots = startTimeBtwShots;
+            FindObjectOfType<AudioManager>().play("BasicGun");
         }
         else
         {
