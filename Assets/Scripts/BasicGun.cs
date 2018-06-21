@@ -32,7 +32,7 @@ public class BasicGun : MonoBehaviour {
 
     public int maxAmmo = 10;
     int currentAmmo;
-    public float reloadTime = 1f;
+    //public float reloadTime = 1f;
 
     
 

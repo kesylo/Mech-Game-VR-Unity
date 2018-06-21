@@ -34,7 +34,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private Vector2 m_Input;
         private Vector3 m_MoveDir = Vector3.zero;
         private CharacterController m_CharacterController;
-        //private CollisionFlags m_CollisionFlags;
+        private CollisionFlags m_CollisionFlags;
         private bool m_PreviouslyGrounded;
         private Vector3 m_OriginalCameraPosition;
         private float m_StepCycle;
@@ -125,7 +125,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
             }
-            //m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
+            m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
 
             ProgressStepCycle(speed);
             UpdateCameraPosition(speed);
@@ -240,20 +240,20 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        //private void OnControllerColliderHit(ControllerColliderHit hit)
-        //{
-        //    Rigidbody body = hit.collider.attachedRigidbody;
-        //    //dont move the rigidbody if the character is on top of it
-        //    if (m_CollisionFlags == CollisionFlags.Below)
-        //    {
-        //        return;
-        //    }
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            Rigidbody body = hit.collider.attachedRigidbody;
+            //dont move the rigidbody if the character is on top of it
+            if (m_CollisionFlags == CollisionFlags.Below)
+            {
+                return;
+            }
 
-        //    if (body == null || body.isKinematic)
-        //    {
-        //        return;
-        //    }
-        //    body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
-        //}
+            if (body == null || body.isKinematic)
+            {
+                return;
+            }
+            body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+        }
     }
 }

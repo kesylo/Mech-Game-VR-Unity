@@ -8,7 +8,7 @@ public class damagePlayer : MonoBehaviour {
 
     float currentHealth;
     public float maxHealth;
-    public float damageAmount = 6;
+    public float damageAmount;
     public Slider healthBar;
 
     void Start () {

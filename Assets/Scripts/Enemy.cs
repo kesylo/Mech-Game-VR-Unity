@@ -40,6 +40,8 @@ public class Enemy : MonoBehaviour
 
     Animator shootAnim;
 
+    float distanceBtwrobs;
+
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -57,39 +59,54 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        distanceBtwrobs = Vector3.Distance(target.position, this.transform.position);
 
-        if (Vector3.Distance (target.position, this.transform.position) < 100)
+        if (distanceBtwrobs > 100)
         {
-            Vector3 direction = target.position - this.transform.position;
-            direction.y = 0;
-
-            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 0.1f);
-
-            anim.SetBool("isIdle", false);
-            if (direction.magnitude > minDistance)
-            {
-                this.transform.Translate(0, 0, 0.05f);
-                anim.SetBool("isWalkingFront", true);
-                anim.SetBool("isShooting", true);
-                Shoot();
-                shootAnim.SetBool("isShootingAnim", true);
-            }
-            else
-            {
-                anim.SetBool("isWalkingFront", false);
-                anim.SetBool("isShooting", true);
-                Shoot();
-                shootAnim.SetBool("isShootingAnim", true);
-            }
+            Debug.Log("dfsfgds");
+            Debug.Log(distanceBtwrobs);
+            anim.SetBool("isWalkingFront", true);
+            anim.SetBool("isShooting", true);
+            
+            shootAnim.SetBool("isShootingAnim", true);
         }
         else
         {
-            anim.SetBool("isIdle", true);
-            anim.SetBool("isWalkingFront", false);
-            anim.SetBool("isShooting", false);
-            shootAnim.SetBool("isShootingAnim", false);
+            Shoot();
         }
-        
+        //{
+        //    Vector3 direction = target.position - this.transform.position;
+        //    direction.y = 0;
+
+        //    this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 0.1f);
+
+        //    anim.SetBool("isIdle", false);
+        //    if (direction.magnitude > minDistance)
+        //    {
+        //        this.transform.Translate(0, 0, 0.05f);
+        //        anim.SetBool("isWalkingFront", true);
+        //        anim.SetBool("isShooting", true);
+        //        Shoot();
+        //        shootAnim.SetBool("isShootingAnim", true);
+        //    }
+        //    else
+        //    {
+        //        anim.SetBool("isWalkingFront", false);
+        //        anim.SetBool("isShooting", true);
+        //        Shoot();
+        //        shootAnim.SetBool("isShootingAnim", true);
+        //    }
+        //}
+        //else
+        //{
+        //    anim.SetBool("isIdle", true);
+        //    anim.SetBool("isWalkingFront", false);
+        //    anim.SetBool("isShooting", false);
+        //    shootAnim.SetBool("isShootingAnim", false);
+        //}
+
+
+
     }
 
     public void Takedamage(float amountOfDamage)
@@ -105,12 +122,13 @@ public class Enemy : MonoBehaviour
     }
 
 
-    IEnumerator EnemyDie()
+    public IEnumerator EnemyDie()
     {
         anim.SetBool("isDying", true);
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
     }
+
 
     void Shoot()
     {

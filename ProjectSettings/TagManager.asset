@@ -7,6 +7,9 @@ TagManager:
   - Floor
   - collider
   - EnemyBullet
+  - Level
+  - ObjectOfInterest
+  - enemy
   layers:
   - Default
   - TransparentFX
@@ -16,8 +19,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - floor
+  - not
   - 
   - 
   - 

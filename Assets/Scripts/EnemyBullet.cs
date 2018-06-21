@@ -41,5 +41,9 @@ public class EnemyBullet : MonoBehaviour {
         {
             DestroyBullet();
         }
+        else
+        {
+            DestroyBullet();
+        }
     }
 }
