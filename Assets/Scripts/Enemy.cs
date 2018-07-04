@@ -63,8 +63,8 @@ public class Enemy : MonoBehaviour
 
         if (distanceBtwrobs > 100)
         {
-            Debug.Log("dfsfgds");
-            Debug.Log(distanceBtwrobs);
+            //Debug.Log("dfsfgds");
+            //Debug.Log(distanceBtwrobs);
             anim.SetBool("isWalkingFront", true);
             anim.SetBool("isShooting", true);
             
@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator EnemyDie()
     {
-        anim.SetBool("isDying", true);
+        //anim.SetBool("isDying", true);
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
     }
